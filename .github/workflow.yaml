@@ -46,7 +46,7 @@ jobs:
             -t ${ECR_REPOSITORY_URI}:${IMAGE_TAG} \
             --build-arg VERSION="${IMAGE_TAG}" \
             --build-arg BUILD_TIMESTAMP="${BUILD_TIMESTAMP}" \
-          .
+            .
 
         docker push ${ECR_REPOSITORY_URI}:${IMAGE_TAG}
 
