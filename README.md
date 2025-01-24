@@ -26,7 +26,7 @@ These secrets will be used in the Github Actions workflow.
 Make sure their values are same as provided to the corresponding Terraform variables in `terraform/eks/variables.tf`.
 These variables will be used in the Github Actions workflow.
 
-7) Now the app is ready to be deployed. Any code push to the `app` directory will trigger a pipeline the will build a Docker image and deploy the app on the EKS cluster.
+7) Now the app is ready to be deployed. Any code push to the `app` directory will trigger a pipeline the builds a Docker image and deploys the app on the EKS cluster.
 The app will be publicly accessible through an AWS load balancer.
 
 ### Delete:
