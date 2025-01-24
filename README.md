@@ -17,7 +17,7 @@ This variable already contains the subnet IDs of my private account as a default
 bash create_infra.sh
 ```
 
-4) Create an AWS ECR registry.
+4) Create an AWS ECR repository.
 
 5) Create Github repository secrets: `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `ECR_REPOSITORY_URI`.
 These secrets will be used in the Github Actions workflow.
@@ -33,7 +33,7 @@ The app will be publicly accessible through an AWS load balancer.
 
 1) Delete the Github repository secrets and variables created for this app.
 
-2) Detele the AWS ECR registry.
+2) Detele the AWS ECR repository.
 
 4) Delete the Terraform resources by running:
 ```
