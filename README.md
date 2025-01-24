@@ -1,27 +1,41 @@
 ### Prerequisites:
 - An existing VPC and subnets that meet Amazon EKS requirements
-  (this code is not responsible of creating these resources at this time. Also, best practice is to use private subnets for the EKS cluster)
+  (this code is not responsible of creating these resources at this time.
+   Also, best practice is to use private subnets for the EKS cluster)
 - Terraform installed
-- Login to your AWS account before executing terraform commands
-- AWS ECR registry
-- Github secrets: AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, ECR_REPOSITORY_URI
-- Github variables: AWS_REGION, EKS_CLUSTER (make sure same values as provided to terraform)
 
 ### Deploy:
 
-1) Provide the subnets IDs on which you want the cluster to be created.
-This is specified using terraform variable `subnet_ids` in `terraform/eks/variables.tf`.
+1) Login programmatically to your AWS account, so Terraform will be able to create resources on your behalf.
+
+2) Provide the subnets IDs in which you want the cluster to be created.
+Specify the list of subnets in Terraform variable `subnet_ids` in `terraform/eks/variables.tf`.
 This variable already contains the subnet IDs of my private account as a default choice.
 
-2) Run:
+3) Create the Terraform resources by running:
 ```
 bash create_infra.sh
 ```
 
+4) Create an AWS ECR registry.
+
+5) Create Github repository secrets: `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `ECR_REPOSITORY_URI`.
+These secrets will be used in the Github Actions workflow.
+
+6) Create Github repository variables: `AWS_REGION`, `EKS_CLUSTER`.
+Make sure their values are same as provided to the corresponding Terraform variables in `terraform/eks/variables.tf`)
+These variables will be used in the Github Actions workflow.
+
+7) Now the app is ready to be deployed. Any code push to the `app` directory will trigger a pipeline the will build a Docker image and deploy the app on the EKS cluster.
+The app will be publicly accessible through an AWS load balancer.
+
 ### Delete:
-1) Run the below to delete the resources created by Terraform:
+
+1) Delete the Github repository secrets and variables created for this app.
+
+2) Detele the AWS ECR registry.
+
+4) Delete the Terraform resources by running:
 ```
 bash delete_infra.sh
 ```
-2) Delete the ECR registry
-3) Delete the Github secrerts and variables 

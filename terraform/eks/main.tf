@@ -53,7 +53,7 @@ resource "aws_iam_role_policy_attachment" "cluster_role_AmazonEKSClusterPolicy" 
 
 
 resource "aws_eks_cluster" "cluster" {
-  name = "ori-cluster"
+  name = var.eks_cluster_name
 
   role_arn = aws_iam_role.cluster_role.arn
 
@@ -106,7 +106,7 @@ resource "aws_iam_role_policy_attachment" "node_role_AmazonEC2ContainerRegistryR
 
 resource "aws_eks_node_group" "node_group" {
   cluster_name    = aws_eks_cluster.cluster.name
-  node_group_name = "ori-node-group"
+  node_group_name = var.node_group_name
   node_role_arn   = aws_iam_role.node_role.arn
   subnet_ids      = var.subnet_ids
 
