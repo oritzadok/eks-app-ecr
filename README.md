@@ -6,7 +6,7 @@
 
 ### Deploy:
 
-1) Login programmatically to your AWS account, so Terraform will be able to create resources on your behalf.
+1) Login to your AWS account programmatically, so Terraform will be able to create resources on your behalf.
 
 2) Provide the subnets IDs in which you want the cluster to be created.
 Specify the list of subnets in Terraform variable `subnet_ids` in `terraform/eks/variables.tf`.
@@ -23,7 +23,7 @@ bash create_infra.sh
 These secrets will be used in the Github Actions workflow.
 
 6) Create Github repository variables: `AWS_REGION`, `EKS_CLUSTER`.
-Make sure their values are same as provided to the corresponding Terraform variables in `terraform/eks/variables.tf`)
+Make sure their values are same as provided to the corresponding Terraform variables in `terraform/eks/variables.tf`
 These variables will be used in the Github Actions workflow.
 
 7) Now the app is ready to be deployed. Any code push to the `app` directory will trigger a pipeline the will build a Docker image and deploy the app on the EKS cluster.
