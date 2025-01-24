@@ -3,6 +3,7 @@
   (this code is not responsible of creating these resources at this time.
    Also, best practice is to use private subnets for the EKS cluster)
 - Terraform installed
+- kubectl installed
 - Helm installed
 
 ### Deploy:
@@ -39,6 +40,7 @@ The app will be publicly accessible through an AWS load balancer.
 3) Uninstall the app:
 ```
 helm uninstall hello-app -n hello-app
+kubectl delete ns hello-app
 ```
 
 4) Delete the Terraform resources by running:
